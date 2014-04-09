@@ -61,4 +61,18 @@
     </config-file>
   </platform>
 
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="LaunchMyApp">
+                <param name="wp-package" value="nl.xservices.plugins.LaunchMyApp"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_ISV_CAMERA" />
+            <Capability Name="ID_CAP_MEDIALIB_PHOTO"/>
+        </config-file>
+    </platform>
+
 </plugin>
