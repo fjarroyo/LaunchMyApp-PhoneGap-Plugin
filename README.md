@@ -30,6 +30,15 @@ This plugin allows you to start your app by calling it with a URL like `mycoolap
 * Unlike iOS, there is no way to use config.xml to define a scheme for your app. Now there is.
 * Tested on Android 4.3, will most likely work with 2.2 and up.
 
+### Windows Phone 8 specifics
+* Due to the order mandatory of the elements on WMAppManifest.xml and the imposibility of add an element at a given position (using config-file), we must add manually a tag "Elements" after "Tokens" tag.
+* App/platforms/wp8/Properties/WMAppManifest.xml
+</Tokens>
+<Extension>
+</Extension>
+<ScreenResolutions>
+
+
 
 ## 2. Installation
 
