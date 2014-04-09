@@ -73,6 +73,8 @@
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Extensions" >
             <Protocol Name="$URL_SCHEME" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
         </config-file>
+
+        <source-file src="src/wp8/nl/xservices/plugins/LaunchMyApp.cs" />
     </platform>
 
 </plugin>
