@@ -23,7 +23,7 @@ namespace CreatePlugin.Plugins.uri
 
         public void initializeApp(String options)
         {
-            SetUpApp();      
+            SetUpApp();
             DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
         }
 
@@ -35,6 +35,7 @@ namespace CreatePlugin.Plugins.uri
                 rootVisual = Application.Current.RootVisual;
 
                 frame.NavigationFailed += RootFrame_NavigationFailed;
+
                 frame.UriMapper = new CustomUriMapper();
                 phoneApplicationInitialized = true;
             }
@@ -69,6 +70,7 @@ namespace CreatePlugin.Plugins.uri
 
         private void ClearBackStackAfterReset(object sender, NavigationEventArgs e)
         {
+            // Unregister the event so it doesn't get called again
             frame.Navigated -= ClearBackStackAfterReset;
 
             // Only clear the stack for 'new' (forward) and 'refresh' navigations
@@ -86,7 +88,8 @@ namespace CreatePlugin.Plugins.uri
 
     class CustomUriMapper : System.Windows.Navigation.UriMapperBase
     {
-        private sealed String PROTOCOL = "/Protocol?encodedLaunchUri";
+        private String PROTOCOL = "/Protocol?encodedLaunchUri";
+
 
         //TODO eliminar Hardcoded string
         private String NAVIGATED_TO = "/MainPage.xaml?uri=";
