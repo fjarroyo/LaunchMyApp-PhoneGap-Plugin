@@ -69,8 +69,10 @@
             </feature>
         </config-file>
 
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Extensions" >
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Tokens/" >
+            <Extensions>
                 <Protocol Name="$URL_SCHEME" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+            </Extensions>
         </config-file>
     </platform>
 
