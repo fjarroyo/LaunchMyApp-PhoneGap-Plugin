@@ -64,6 +64,10 @@
     <!-- wp8 -->
     <platform name="wp8">
 
+        <js-module src="www/wp8/LaunchMyApp.js" name="LaunchMyApp">
+            <clobbers target="window.plugins.launchmyapp" />
+        </js-module>
+
         <config-file target="config.xml" parent="/*">
             <feature name="LaunchMyApp">
                 <param name="wp-package" value="LaunchMyApp"/>

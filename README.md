@@ -52,7 +52,7 @@ phoneApplicationInitialized = true;
 ```
 
 
-## 2. Installation
+## 2. InstallationF
 
 ### Automatically (CLI / Plugman)
 LaunchMyApp is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman).
