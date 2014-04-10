@@ -14,7 +14,7 @@ using WPCordovaClassLib.Cordova.JSON;
 namespace Cordova.Extension.Commands
 {
 
-    public class StartMyApp : BaseCommand
+    public class LaunchMyApp : BaseCommand
     {
         private bool phoneApplicationInitialized = false;
 
