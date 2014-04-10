@@ -15,7 +15,6 @@ using WPCordovaClassLib.Cordova.JSON;
 
 namespace Cordova.Extension.Commands
 {
-
     public class LaunchMyApp : BaseCommand
     {
         private bool phoneApplicationInitialized = false;
@@ -26,8 +25,11 @@ namespace Cordova.Extension.Commands
 
         public void getUriData(string options)
         {
-            string uriData = GetUriDataFromCustomUriMatcher();
-            DispatchCommandResult(new PluginResult(PluginResult.Status.OK, uriData));
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                string uriData = GetUriDataFromCustomUriMatcher();
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, uriData));   
+            });    
         }
 
         private string GetUriDataFromCustomUriMatcher()
@@ -36,6 +38,5 @@ namespace Cordova.Extension.Commands
             var customUriMapper = frame.UriMapper as CustomUriMapper;
             return customUriMapper.UriData;   
         }       
-
     }
 }
