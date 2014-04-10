@@ -39,6 +39,17 @@ This plugin allows you to start your app by calling it with a URL like `mycoolap
 </Extensions>
 <ScreenResolutions>
 ```
+* Add on App/platforms/wp8/MainPage.xaml.cs the following (inside InitializePhoneApplication method)
+```
+// Handle navigation failures
+RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+// Necessary for LaunchMyApp plugin
+RootFrame.UriMapper = new CustomUriMapper("aireuropa", "/MainPage.xaml");
+
+// Ensure we don't initialize again
+phoneApplicationInitialized = true;
+```
 
 
 ## 2. Installation
