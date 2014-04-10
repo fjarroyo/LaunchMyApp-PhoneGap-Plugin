@@ -11,10 +11,10 @@ using WPCordovaClassLib.Cordova;
 using WPCordovaClassLib.Cordova.Commands;
 using WPCordovaClassLib.Cordova.JSON;
 
-namespace CreatePlugin.Plugins.uri
+namespace Cordova.Extension.Commands
 {
 
-    class StartMyApp : BaseCommand
+    public class StartMyApp : BaseCommand
     {
         private bool phoneApplicationInitialized = false;
 
@@ -22,11 +22,13 @@ namespace CreatePlugin.Plugins.uri
 
         private UIElement rootVisual;
 
-        public void initializeApp(String options)
+        public void initializeApp(string options)
         {
-            StartMyAppConfig config = JsonHelper.Deserialize<StartMyAppConfig>(options);
+            StartMyAppConfig config = JsonHelper.Deserialize<StartMyAppConfig[]>(options)[0];
             SetUpApp(new CustomUriMapper(config.UriToMatch, config.NavigateTo));
-            DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
+            //DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
+            DispatchCommandResult();
+
         }
 
         private void SetUpApp(CustomUriMapper customUriMapper)

@@ -66,7 +66,7 @@
 
         <config-file target="config.xml" parent="/*">
             <feature name="LaunchMyApp">
-                <param name="wp-package" value="nl.xservices.plugins.LaunchMyApp"/>
+                <param name="wp-package" value="LaunchMyApp"/>
             </feature>
         </config-file>
 
