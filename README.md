@@ -45,7 +45,7 @@ This plugin allows you to start your app by calling it with a URL like `mycoolap
 RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 
 // Necessary for LaunchMyApp plugin
-RootFrame.UriMapper = new CustomUriMapper("aireuropa", "/MainPage.xaml");
+RootFrame.UriMapper = new CustomUriMapper(URL_SCHEME, "/MainPage.xaml"); //URL_SCHEME must be the same as used for installing the plugin
 
 // Ensure we don't initialize again
 phoneApplicationInitialized = true;
