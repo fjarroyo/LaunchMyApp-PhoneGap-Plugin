@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using WPCordovaClassLib.Cordova;
 using WPCordovaClassLib.Cordova.Commands;
+using WPCordovaClassLib.Cordova.JSON;
 
 namespace CreatePlugin.Plugins.uri
 {
@@ -23,11 +24,12 @@ namespace CreatePlugin.Plugins.uri
 
         public void initializeApp(String options)
         {
-            SetUpApp();
+            StartMyAppConfig config = JsonHelper.Deserialize<StartMyAppConfig>(options);
+            SetUpApp(new CustomUriMapper(config.UriToMatch, config.NavigateTo));
             DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
         }
 
-        private void SetUpApp()
+        private void SetUpApp(CustomUriMapper customUriMapper)
         {
             if (!phoneApplicationInitialized)
             {
@@ -36,7 +38,7 @@ namespace CreatePlugin.Plugins.uri
 
                 frame.NavigationFailed += RootFrame_NavigationFailed;
 
-                frame.UriMapper = new CustomUriMapper();
+                frame.UriMapper = customUriMapper;
                 phoneApplicationInitialized = true;
             }
         }
@@ -88,17 +90,24 @@ namespace CreatePlugin.Plugins.uri
 
     class CustomUriMapper : System.Windows.Navigation.UriMapperBase
     {
-        private String PROTOCOL = "/Protocol?encodedLaunchUri";
+        private string PROTOCOL = "/Protocol?encodedLaunchUri";
 
+        private string URI_PARAM = "?uri=";
 
-        //TODO eliminar Hardcoded string
-        private String NAVIGATED_TO = "/MainPage.xaml?uri=";
+        private string UriToMatch { get; set; }
+
+        //"/MainPage.xaml"
+        private string NavigateTo { get; set; }
+
+        public CustomUriMapper(string uriToMatch, string navigateTo) {
+            UriToMatch = uriToMatch;
+            NavigateTo = navigateTo;
+        }
 
         public override Uri MapUri(Uri uri)
         {
-            //TODO eliminar Hardcoded string
             String receivedUri = System.Net.HttpUtility.UrlDecode(uri.ToString());
-            if (receivedUri.Contains("aireuropa:"))
+            if (receivedUri.Contains(UriToMatch))
             {
                 return handleCustomUrl(receivedUri);
             }
@@ -107,10 +116,11 @@ namespace CreatePlugin.Plugins.uri
 
         private Uri handleCustomUrl(string receivedUri)
         {
-            String formattedUri = NAVIGATED_TO + normalizeUri(receivedUri);
+            String formattedUri = NavigateTo + URI_PARAM + normalizeUri(receivedUri);
             return new Uri(formattedUri, UriKind.Relative);
         }
 
+        //TODO ver formato url
         private string normalizeUri(string receivedUri)
         {
             return receivedUri.Replace(PROTOCOL, "")
@@ -121,6 +131,13 @@ namespace CreatePlugin.Plugins.uri
                 .Replace("/", "-")
                 .Replace(":", "-");
         }
+    }
+
+    class StartMyAppConfig
+    {
+        public string NavigateTo { get; set; }
+        public string UriToMatch { get; set;  }
+
     }
 
 }
