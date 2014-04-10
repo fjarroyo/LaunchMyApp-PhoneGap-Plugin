@@ -19,11 +19,11 @@ namespace com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp
 
         public string UriData { get; set; }
 
-
         public CustomUriMapper(string uriToMatch, string navigateTo)
         {
             UriToMatch = uriToMatch;
             NavigateTo = navigateTo;
+            UriData = string.Empty;
         }
 
         public override Uri MapUri(Uri uri)
