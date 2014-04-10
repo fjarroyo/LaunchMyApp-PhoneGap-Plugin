@@ -76,7 +76,7 @@
 
         <source-file src="src/wp8/nl/xservices/plugins/LaunchMyApp.cs" />
         <source-file src="src/wp8/nl/xservices/plugins/CustomUriMapper.cs" />
-        <source-file src="src/wp8/nl/xservices/plugins/App.xaml.cs" target-dir="../../../../../../../"  />
+        <source-file src="src/wp8/nl/xservices/plugins/App.xaml.cs"  />
 
     </platform>
 
