@@ -17,6 +17,9 @@ namespace com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp
         //"/MainPage.xaml"
         public string NavigateTo { get; set; }
 
+        public string UriData { get; set; }
+
+
         public CustomUriMapper(string uriToMatch, string navigateTo)
         {
             UriToMatch = uriToMatch;
@@ -34,9 +37,9 @@ namespace com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp
         }
 
         private Uri handleCustomUrl(string receivedUri)
-        {
-            string formattedUri = NavigateTo + URI_PARAM + normalizeUri(receivedUri);
-            return new Uri(formattedUri, UriKind.Relative);
+        {            
+            UriData = normalizeUri(receivedUri);
+            return new Uri(NavigateTo, UriKind.Relative);
         }
 
         //TODO ver formato url

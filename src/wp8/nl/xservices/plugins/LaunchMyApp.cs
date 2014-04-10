@@ -1,3 +1,4 @@
+using com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp;
 using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
@@ -23,30 +24,18 @@ namespace Cordova.Extension.Commands
 
         private UIElement rootVisual;
 
-        public void initializeApp(string options)
+        public void getUriData(string options)
         {
-            StartMyAppConfig config = deserialize(options);
-            DispatchCommandResult(new PluginResult(PluginResult.Status.OK, "Received callback on native code"));
+            string uriData = GetUriDataFromCustomUriMatcher();
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK, uriData));
         }
 
-        private StartMyAppConfig deserialize(String options)
+        private string GetUriDataFromCustomUriMatcher()
         {
-            string jsonConfig = JsonHelper.Deserialize<string[]>(options)[0];
-            return JsonHelper.Deserialize<StartMyAppConfig>(jsonConfig);
-        }
+            var frame = Application.Current.RootVisual as PhoneApplicationFrame;     
+            var customUriMapper = frame.UriMapper as CustomUriMapper;
+            return customUriMapper.UriData;   
+        }       
 
     }
-
-
-    [DataContract]
-    class StartMyAppConfig
-    {
-        [DataMember(Name = "navigateTo", IsRequired = false)]
-        public string NavigateTo { get; set; }
-
-        [DataMember(Name = "uriToMatch", IsRequired = false)]
-        public string UriToMatch { get; set;  }
-
-    }
-
 }
