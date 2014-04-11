@@ -33,6 +33,7 @@ namespace com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp
             {
                 return handleCustomUrl(receivedUri);
             }
+            UriData = string.Empty;
             return uri;
         }
 
