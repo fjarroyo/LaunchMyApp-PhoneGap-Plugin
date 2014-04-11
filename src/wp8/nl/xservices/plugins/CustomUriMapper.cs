@@ -42,16 +42,9 @@ namespace com.aireuropa.phonegap.Plugins.nl.x_services.plugins.launchmyapp
             return new Uri(NavigateTo, UriKind.Relative);
         }
 
-        //TODO ver formato url
         private string normalizeUri(string receivedUri)
         {
-            return receivedUri.Replace(PROTOCOL, "")
-                .Replace("&", "_")
-                .Replace("+", "_")
-                .Replace("?", "-")
-                .Replace("=", "_")
-                .Replace("/", "-")
-                .Replace(":", "-");
+            return receivedUri.Replace(PROTOCOL, "");
         }
     }
 }
