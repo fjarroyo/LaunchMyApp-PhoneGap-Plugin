@@ -31,11 +31,10 @@ public class LaunchMyApp extends CordovaPlugin {
         }
     } else if (ACTION_GETURIDATA.equalsIgnoreCase(action)){
         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, uriData));
-        intent.setData(null);
         return true;
     } else {
-      callbackContext.error("This plugin only responds to the " + ACTION_CHECKINTENT + ", " + ACTION_GETURIDATA + " action.");
-      return false;
+        callbackContext.error("This plugin only responds to the " + ACTION_CHECKINTENT + ", " + ACTION_GETURIDATA + " action.");
+        return false;
     }
   }
 }
