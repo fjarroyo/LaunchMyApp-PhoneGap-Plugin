@@ -13,8 +13,6 @@
 
   <license>MIT</license>
 
-  <preference name="URL_SCHEME" />
-
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
   </engines>
@@ -30,7 +28,7 @@
         <dict>
           <key>CFBundleURLSchemes</key>
           <array>
-            <string>$URL_SCHEME</string>
+            <string>aem</string>
           </array>
         </dict>
       </array>
@@ -53,7 +51,7 @@
 
     <config-file target="AndroidManifest.xml" parent="/*/application/activity">
       <intent-filter>
-        <data android:scheme="$URL_SCHEME"/>
+        <data android:scheme="aem"/>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
@@ -75,7 +73,7 @@
         </config-file>
 
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Extensions" >
-            <Protocol Name="$URL_SCHEME" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+            <Protocol Name="aem" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
         </config-file>
 
         <source-file src="src/wp8/nl/xservices/plugins/LaunchMyApp.cs" />
